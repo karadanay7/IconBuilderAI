@@ -1,0 +1,62 @@
+﻿ 
+    
+    @page "/community"
+@using Microsoft.AspNetCore.SignalR.Client
+
+
+@if(urls is null)
+{
+    <Loading/>
+}
+else if (urls is not null && !urls.Any())
+{
+    <h4>There are no icons to show.</h4>
+}
+else
+{
+   <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-4 text-center">Community Icons</h1>
+        <div class="flex flex-wrap gap-3 mt-7 justify-center">
+            @foreach (var imageUrl in urls)
+            {
+                <div>
+                    <div class="bg-base-100 shadow-xl">
+                        <figure class="h-32 w-32 overflow-hidden shadow-xl">
+                          <img src="@($"https://storage.googleapis.com/myicon-builder/{imageUrl}")" alt="Community Image" class="h-full w-full rounded-lg object-cover" />
+                        </figure>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@code {
+    private List<string> urls = null;
+    private HubConnection? hubConnection;
+
+    protected override async Task OnInitializedAsync()
+    {
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl("http://localhost:5121/hubs/orderHub")
+            .WithAutomaticReconnect()
+            .Build();
+
+        hubConnection.On<List<string>>("NewOrderAdded", (newUrls) =>
+        {
+
+            urls.AddRange(newUrls);
+            
+            InvokeAsync(StateHasChanged);
+        });
+
+        await hubConnection.StartAsync();
+        
+        urls = await hubConnection.InvokeAsync<List<string>>("GetAllCommunityAsync");
+        
+        await base.OnInitializedAsync();
+    }
+    
+    
+
+}

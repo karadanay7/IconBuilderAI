@@ -1,0 +1,15 @@
+2024-06-12 15:31:07.091 +03:00 [INF] Starting web application
+2024-06-12 15:31:07.350 +03:00 [INF] User profile is available. Using '/Users/aysegulkaradan/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2024-06-12 15:31:07.386 +03:00 [INF] Now listening on: http://localhost:5121
+2024-06-12 15:31:07.386 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-12 15:31:07.387 +03:00 [INF] Hosting environment: Development
+2024-06-12 15:31:07.387 +03:00 [INF] Content root path: /Users/aysegulkaradan/Projects/Mext/MextFullStackBootcamp/MextFullstackSaaS/MextFullstackSaaS.WebApi
+2024-06-12 15:31:08.139 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/index.html - null null
+2024-06-12 15:31:08.310 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/index.html - 200 null text/html;charset=utf-8 172.181ms
+2024-06-12 15:31:08.679 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui-bundle.js - null null
+2024-06-12 15:31:08.679 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/_framework/aspnetcore-browser-refresh.js - null null
+2024-06-12 15:31:08.714 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/_framework/aspnetcore-browser-refresh.js - 200 13732 application/javascript; charset=utf-8 35.0485ms
+2024-06-12 15:31:08.781 +03:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2024-06-12 15:31:08.784 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/swagger-ui-bundle.js - 200 1096145 text/javascript 105.8009ms
+2024-06-12 15:31:08.936 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5121/swagger/v1/swagger.json - null null
+2024-06-12 15:31:09.032 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5121/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 95.6291ms

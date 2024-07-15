@@ -1,0 +1,68 @@
+﻿@page "/show-icon/{OrderId:guid}"
+@using MextFullstackSaaS.Application.Features.Orders.Queries.GetById
+@inject HttpClient HttpClient
+
+@if (order is null)
+{
+    <Loading />
+}
+else
+{
+    <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content text-center">
+            <div class="max-w-md">
+                <h1 class="text-2xl md:text-3xl font-bold">Your Generated Icons</h1>
+                <div class="card  shadow-xl ">
+                    <div class="card-title  flex items-center justify-center">
+                        <h2 class="text-lg font-bold">@order.IconDescription</h2>
+                    </div>
+                    @if (order.Urls.Count > 1)
+                    {
+                        <div class="card-body flex items-center justify-center ">
+
+                            @foreach (var url in order.Urls)
+                            {
+
+                                <img class="w-[8rem]"
+                                     src="@($"https://storage.googleapis.com/myicon-bilder/{url}")"
+                                     alt="@order.IconDescription" />
+
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="card-body flex items-center justify-center">
+                            <img class="w-[25rem]"
+                                 src="@($"https://storage.googleapis.com/myicon-builder/{order.Urls[0]}")"
+                                 alt="@order.IconDescription" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public Guid OrderId { get; set; }
+
+    private OrderGetByIdDto order = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            order = await HttpClient.GetFromJsonAsync<OrderGetByIdDto>($"Orders/{OrderId}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+
+        await base.OnInitializedAsync();
+    }
+
+}

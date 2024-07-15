@@ -1,0 +1,18 @@
+﻿@page "/payment-success"
+@using MextFullstackSaaS.WasmClient.Services
+@inject IToasterService ToasterService
+
+<h2>@Message</h2>
+
+@code {
+    [SupplyParameterFromQuery(Name = "message")]
+    [Parameter] public  string Message { get; set; }
+
+    protected override void OnInitialized()
+    {
+        ToasterService.ShowSuccess(Message);
+
+        base.OnInitialized();
+    }
+
+}
